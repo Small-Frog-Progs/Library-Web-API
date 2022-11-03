@@ -19,7 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/test', function () {
+//    $book = \App\Models\Book::nondigital()->get();
+//    dd($book);
     return response()->json([
         'status'=>'yesss'
     ]);
 });
+
+Route::post('/login', [\App\Http\Controllers\UserController::class, 'auth']);

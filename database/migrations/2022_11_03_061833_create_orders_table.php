@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJournalTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateJournalTable extends Migration
      */
     public function up()
     {
-        Schema::create('journal', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('book_id');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateJournalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('journal');
+        Schema::dropIfExists('orders');
     }
 }
