@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserAuthRequest extends ApiValidator
+class UserStoreRequest extends ApiValidator
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class UserAuthRequest extends ApiValidator
     public function rules()
     {
         return [
-            'email' =>  'required|string',
-            'password' =>  'required|string',
+            'name'  =>  'required|string',
+            'email'  =>  'required|unique:users|string',
+            'password'  =>  'required|string',
         ];
     }
 }

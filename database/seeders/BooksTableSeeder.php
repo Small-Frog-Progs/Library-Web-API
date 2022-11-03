@@ -17,16 +17,6 @@ class BooksTableSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table('books')->insert([
-//            [
-//                'name'  =>  'Book 1',
-////                'author_id' =>  1,
-//                'category_id'   =>  1,
-//                'shelf_id'  =>  1,
-//                'image_path'    =>  'test',
-//                'is_digit'  =>  FALSE,
-//            ],
-//        ]);
         $book = Book::create([
             'name' => 'Book 1',
             'category_id' => 1,
