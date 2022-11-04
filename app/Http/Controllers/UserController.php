@@ -122,11 +122,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return response()->json([
-            'response' => [
-                'message' => 'success',
-            ],
-        ]);
+        if ($id!=1) {
+            User::destroy($id);
+            return response()->json(
+                'success',200
+            );
+        }
     }
 }

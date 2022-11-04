@@ -32,7 +32,8 @@ Route::middleware('check.bearer')->group(function() {
         Route::post('/reader/index', [UserController::class, 'index'])->name('user.index');
         Route::post('/reader/{id}', [UserController::class, 'show'])->name('user.show');
         //get
-        Route::patch('/reader/{id}}', [UserController::class, 'update'])->name('user.update');
+        Route::patch('/reader/{id}', [UserController::class, 'update'])->name('user.update');
+        Route::delete('/reader/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::post('/author/index',[AuthorController::class, 'index'])->name('author.index');
         Route::post('/author', [AuthorController::class, 'store'])->name('author.store');

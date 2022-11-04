@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JournalStoreRequest;
+use App\Http\Resources\JournalResource;
+use App\Models\Journal;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class JournalController extends Controller
@@ -9,21 +13,13 @@ class JournalController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(
+            JournalResource::collection(Journal::all()),
+        );
     }
 
     /**
@@ -32,9 +28,11 @@ class JournalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JournalStoreRequest $request)
     {
-        //
+        $valid = $request->validated();
+        $journal = Journal::create($valid);
+
     }
 
     /**
@@ -44,17 +42,6 @@ class JournalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

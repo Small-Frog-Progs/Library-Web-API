@@ -18,4 +18,14 @@ class Journal extends Model
         'end_date',
         'status',
     ];
+
+    protected function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected function Book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

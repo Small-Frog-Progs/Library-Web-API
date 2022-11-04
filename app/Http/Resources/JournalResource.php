@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class JournalResource extends JsonResource
@@ -14,6 +16,13 @@ class JournalResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'  =>  $this->id,
+            'user_id'  =>  $this->user_id,
+            'book'  =>  $this->book_id,
+            'start_date'    =>  $this->start_date,
+            'end_date'    =>  $this->end_date,
+            'status'    =>  $this->status,
+        ];
     }
 }

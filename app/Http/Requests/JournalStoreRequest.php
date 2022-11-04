@@ -13,7 +13,7 @@ class JournalStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class JournalStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id'   =>  'required|integer',
+            'book_id'   =>  'required|integer',
+            'start_date'   =>  'required|date',
+            'end_date'   =>  'required|date',
+            'status'   =>  '',
+
         ];
     }
 }

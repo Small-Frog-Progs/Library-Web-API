@@ -16,17 +16,19 @@ class BookResource extends JsonResource
      */
     public function toArray($request)
     {
+        $author = $this->authors()->first();
+        $genre = $this->genres()->first();
         return [
             'id'    =>  $this->id,
             'name'    =>  $this->name,
-            'category'    =>  new CategoryResource(Category::find($this->category_id)),
-            'shelf'  =>  new ShelfResource(Shelf::find($this->shelf_id)),
+            'category'    =>  $this->category_id,
+            'shelf'  =>  Shelf::find($this->shelf_id)->name,
             'image_path'  =>  $this->image_path,
             'number_of_pages'  =>  $this->number_of_pages,
             'is_digit'  =>  $this->is_digit,
             'book_path'  =>  $this->book_path,
-            'authors'   =>  AuthorResource::collection($this->authors),
-            'genres'   =>  GenreResource::collection($this->genres),
+            'author'   =>  $author?->name,
+            'genre'   =>  $genre?->name,
         ];
     }
 }
