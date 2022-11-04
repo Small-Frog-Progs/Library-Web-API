@@ -22,7 +22,8 @@ class CreateBooksTable extends Migration
 //            $table->foreignId('user_id');
 //            $table->foreignId('order_id');
             $table->string('image_path');
-            $table->boolean('is_digital')->default(FALSE);
+            $table->integer('number_of_pages');
+            $table->boolean('is_digit')->default(FALSE);
             $table->string('book_path')->nullable();
             $table->timestamps();
         });

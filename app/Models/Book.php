@@ -16,6 +16,7 @@ class Book extends Model
         'author_id',
         'category_id',
         'shelf_id',
+        'number_of_pages',
         'image_path',
         'is_digit',
         'book_path',

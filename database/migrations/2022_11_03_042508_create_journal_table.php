@@ -19,7 +19,7 @@ class CreateJournalTable extends Migration
             $table->foreignId('book_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('status')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

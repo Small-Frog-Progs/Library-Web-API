@@ -20,16 +20,18 @@ class BooksTableSeeder extends Seeder
         $book = Book::create([
             'name' => 'Book 1',
             'category_id' => 1,
+            'number_of_pages' => 100,
             'shelf_id' => 1,
             'image_path' => 'test',
-            'is_digital' => 0,
+            'is_digit' => 0,
         ]);
         $book2 = Book::create([
             'name' => 'Book 2',
             'category_id' => 2,
+            'number_of_pages' => 100,
             'shelf_id' => 2,
             'image_path' => 'test2',
-            'is_digital' => 1,
+            'is_digit' => 1,
         ]);
         $book->authors()->attach(Author::first());
         $book2->authors()->attach(Author::first());
