@@ -12,4 +12,9 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    protected function Book()
+    {
+        return $this->hasMany(Book::class);
+    }
 }

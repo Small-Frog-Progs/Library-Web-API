@@ -66,11 +66,14 @@ class GenreController extends Controller
     public function update(GenreUpdateRequest $request, $id)
     {
         $valid = $request->validated();
-        $genre = Genre::findOrFail($id);
-        $genre->update($valid);
-        return response()->json(
-            new GenreResource($genre),
-        200);
+        $genre = Genre::find($id);
+        if ($genre) {
+            $genre->update($valid);
+            $genre->save();
+            return response()->json(
+                new GenreResource($genre),
+                200);
+        }
     }
 
     /**

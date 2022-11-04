@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\JournalStoreRequest;
+use App\Http\Requests\JournalUpdateRequest;
 use App\Http\Resources\JournalResource;
 use App\Models\Journal;
 use Illuminate\Http\JsonResponse;
@@ -49,13 +50,21 @@ class JournalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param JournalUpdateRequest $request
+     * @param int $id
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(JournalUpdateRequest $request, $id)
     {
-        //
+        $valid = $request->validated();
+        $journal = Journal::find($id);
+        if ($journal) {
+            $journal->update($valid);
+            $journal->save();
+            return response()->json(
+                new JournalResource($journal)
+            );
+        }
     }
 
     /**
@@ -66,6 +75,10 @@ class JournalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $journal = Journal::find($id);
+        if ($journal) {
+            Journal::destroy($id);
+            return response()->json('success');
+        }
     }
 }

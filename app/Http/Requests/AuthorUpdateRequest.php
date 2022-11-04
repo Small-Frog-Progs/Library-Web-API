@@ -24,7 +24,7 @@ class AuthorUpdateRequest extends ApiValidator
     public function rules()
     {
         return [
-            //
+            'name'  =>  'string',
         ];
     }
 }

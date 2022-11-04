@@ -13,7 +13,7 @@ class JournalUpdateRequest extends ApiValidator
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class JournalUpdateRequest extends ApiValidator
     public function rules()
     {
         return [
-            //
+            'user_id'   =>  'integer',
+            'book_id'   =>  'integer',
+            'start_date'   =>  'date',
+            'end_date'   =>  'date',
+            'status'   =>  'boolean',
         ];
     }
 }
