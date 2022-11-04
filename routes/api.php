@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -40,6 +41,9 @@ Route::middleware('check.bearer')->group(function() {
         Route::post('/author/{id}', [AuthorController::class, 'show'])->name('author.show');
         Route::patch('/author/{id}', [AuthorController::class, 'update'])->name('author.update');
         Route::delete('/author/delete/{id}', [AuthorController::class, 'destroy'])->name('author.destroy');
+
+        Route::get('/genre/index', [GenreController::class, 'index'])->name('genre.index');
+        Route::get('/genre/{id}', [GenreController::class, 'show'])->name('genre.show');
 
         Route::post('/journal/index', [JournalController::class, 'index'])->name('journal.index');
 //        Route::post('/journal', [JournalController::class, 'store'])->name('journal.store');
