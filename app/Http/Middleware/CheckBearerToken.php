@@ -18,7 +18,8 @@ class CheckBearerToken
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->bearerToken() && User::where('remember_token', $request->bearerToken())->first()) {
+        if ($request->token && User::where('remember_token', $request->token)->first()) {
+//        if ($request->bearerToken() && User::where('remember_token', $request->bearerToken())->first()) {
             return $next($request);
         } else {
             return response()->json([

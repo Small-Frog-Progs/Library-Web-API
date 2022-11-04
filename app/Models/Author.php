@@ -13,6 +13,11 @@ class Author extends Model
         'name',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function Books() {
         return $this->hasMany(Book::class);
     }

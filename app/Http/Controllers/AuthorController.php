@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthorStoreRequest;
 use App\Http\Requests\AuthorUpdateRequest;
+use App\Http\Resources\AuthorResource;
 use App\Models\Author;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends Controller
 {
@@ -18,12 +20,15 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'response'  =>  [
-                'message'   =>  'success',
-                'data'   =>  Author::all(),
-            ],
-        ]);
+//        return response()->json([
+//            'response'  =>  [
+//                'message'   =>  'success',
+//                'data'   =>  Author::all(),
+//            ],
+//        ]);
+        return response()->json(
+            AuthorResource::collection(Author::all())
+        );
     }
 
 
@@ -37,12 +42,13 @@ class AuthorController extends Controller
     {
         $valid = $request->validated();
         $author = Author::create($valid);
-        return response()->json([
-            'response'  =>  [
-                'message'   =>  'success',
-                'data'  =>  $author,
-            ],
-        ],200);
+//        return response()->json([
+//            'response'  =>  [
+//                'message'   =>  'success',
+//                'data'  =>  $author,
+//            ],
+//        ],200);
+        return response()->json($author,200);
     }
 
     /**
@@ -53,12 +59,16 @@ class AuthorController extends Controller
      */
     public function show(int $id)
     {
-        return response()->json([
-            'response'  =>  [
-                'message'   =>  'success',
-                'data'    =>  Author::find($id),
-            ],
-        ],200);
+//        return response()->json([
+//            'response'  =>  [
+//                'message'   =>  'success',
+//                'data'    =>  Author::find($id),
+//            ],
+//        ],200);
+        $author = Author::findOrFail($id);
+//        if ($author) {
+            return response()->json(new AuthorResource($author),200);
+//        }
     }
 
     /**
@@ -71,15 +81,16 @@ class AuthorController extends Controller
     public function update(AuthorUpdateRequest $request, int $id)
     {
         $valid = $request->validated();
-        $author = Author::find($id);
+        $author = Author::findOrFail($id);
         $author->update($valid);
         $author->save();
-        return response()->json([
-            'response'  =>  [
-                'message'   =>  'success',
-                'data'    =>  $author,
-            ],
-        ],200);
+//        return response()->json([
+//            'response'  =>  [
+//                'message'   =>  'success',
+//                'data'    =>  $author,
+//            ],
+//        ],200);
+        return response()->json($author,200);
     }
 
     /**
@@ -91,10 +102,11 @@ class AuthorController extends Controller
     public function destroy($id)
     {
         Author::destroy($id);
-        return response()->json([
-            'response'  =>  [
-                'message'   =>  'success',
-            ],
-        ],200);
+//        return response()->json([
+//            'response'  =>  [
+//                'message'   =>  'success',
+//            ],
+//        ],200);
+        return response()->json('success',200);
     }
 }

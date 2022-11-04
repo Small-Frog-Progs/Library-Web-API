@@ -19,14 +19,14 @@ class BookResource extends JsonResource
         return [
             'id'    =>  $this->id,
             'name'    =>  $this->name,
-            'category'    =>  Category::find($this->category_id),
-            'shelf'  =>  Shelf::find($this->shelf_id),
+            'category'    =>  new CategoryResource(Category::find($this->category_id)),
+            'shelf'  =>  new ShelfResource(Shelf::find($this->shelf_id)),
             'image_path'  =>  $this->image_path,
             'number_of_pages'  =>  $this->number_of_pages,
             'is_digit'  =>  $this->is_digit,
             'book_path'  =>  $this->book_path,
-            'authors'   =>  $this->authors,
-            'genres'   =>  $this->genres,
+            'authors'   =>  AuthorResource::collection($this->authors),
+            'genres'   =>  GenreResource::collection($this->genres),
         ];
     }
 }

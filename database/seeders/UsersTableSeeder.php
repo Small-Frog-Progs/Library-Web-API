@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
                 'email'  =>  'a@a.a',
                 'password'  =>  Hash::make('123321'),
                 'is_admin'  =>  true,
+                'remember_token'    =>  'ATzcaKKDNsseoWt2Hl1VkKiuAFF3p4RgShw4dBonrUCAJSlvUFxxpt34UqKIpGxzBXslI7uc4bU3nqU9T70P517KepCC8tNHg3pZ',
             ]
         ]);
     }

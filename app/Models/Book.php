@@ -22,6 +22,11 @@ class Book extends Model
         'book_path',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function scopeDigital($query): Builder
     {
         return $query->where('is_digital', 1);

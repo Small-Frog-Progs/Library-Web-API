@@ -22,7 +22,7 @@ class BooksTableSeeder extends Seeder
             'category_id' => 1,
             'number_of_pages' => 100,
             'shelf_id' => 1,
-            'image_path' => 'test',
+            'image_path' => '/storage/pictures/book_1.jpg',
             'is_digit' => 0,
         ]);
         $book2 = Book::create([
@@ -30,7 +30,7 @@ class BooksTableSeeder extends Seeder
             'category_id' => 2,
             'number_of_pages' => 100,
             'shelf_id' => 2,
-            'image_path' => 'test2',
+            'image_path' => '/storage/pictures/book_2.jpg',
             'is_digit' => 1,
         ]);
         $book->authors()->attach(Author::first());

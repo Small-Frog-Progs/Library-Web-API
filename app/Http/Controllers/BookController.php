@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookStoreRequest;
+use App\Http\Resources\BookResource;
 use App\Models\Book;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,12 +18,15 @@ class BookController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'response'  =>  [
-                'message'   =>  'success',
-                'data'  =>  Book::all(),
-            ],
-        ]);
+//        return response()->json([
+//            'response'  =>  [
+//                'message'   =>  'success',
+//                'data'  =>  BookResource::collection(Book::all()),
+//            ],
+//        ]);
+        return response()->json(
+            BookResource::collection(Book::all()),
+        );
     }
 
     /**
@@ -44,23 +48,27 @@ class BookController extends Controller
         ]);
         $book->genres()->attach($valid['genres']);
         $book->authors()->attach($valid['authors']);
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return JsonResponse
      */
     public function show($id)
     {
-        $book = BookResource(Book::find($id));
-        return response()->json([
-            'response'  =>  [
-                'message'   =>  'success',
-                'data'  =>  Book::find($id),
-            ],
-        ]);
+        $book = new BookResource(Book::find($id));
+//        return response()->json([
+//            'response'  =>  [
+//                'message'   =>  'success',
+//                'data'  =>  $book,
+//            ],
+//        ]);
+        return response()->json(
+            $book,
+        );
     }
 
     /**

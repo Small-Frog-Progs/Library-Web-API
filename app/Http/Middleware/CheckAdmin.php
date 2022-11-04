@@ -18,7 +18,8 @@ class CheckAdmin
     public function handle(Request $request, Closure $next)
     {
         if (
-            (User::where('remember_token', $request->bearerToken())
+            (User::where('remember_token', $request->token)
+//            (User::where('remember_token', $request->bearerToken())
                 ->first())->is_admin) {
             return $next($request);
         }
