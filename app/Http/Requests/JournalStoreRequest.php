@@ -24,11 +24,11 @@ class JournalStoreRequest extends ApiValidator
     public function rules()
     {
         return [
-            'user_id'   =>  'required|integer',
-            'book_id'   =>  'required|integer',
+            'user_id'   =>  'required|integer|exists:users,id',
+            'book_id'   =>  'required|integer|exists:books,id',
             'start_date'   =>  'required|date',
             'end_date'   =>  'required|date',
-            'status'   =>  '',
+            'status'   =>  'boolean',
 
         ];
     }
