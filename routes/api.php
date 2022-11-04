@@ -47,7 +47,7 @@ Route::middleware('check.bearer')->group(function() {
 
         Route::post('/journal/index', [JournalController::class, 'index'])->name('journal.index');
         Route::post('/journal/{id}', [JournalController::class, 'show'])->name('journal.show');
-        Route::patch('/journal/update/{id}', [JournalController::class, 'update'])->name('journal.update');
+        Route::patch('/journal/{id}', [JournalController::class, 'update'])->name('journal.update');
         Route::post('/journal', [JournalController::class, 'store'])->name('journal.store');
 
         Route::post('/book/index', [BookController::class, 'index'])->name('book.index');
